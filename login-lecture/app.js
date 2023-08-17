@@ -16,27 +16,17 @@
 const express = require("express");
 const app = express();
 
-app.listen(3000, function(){
-    console.log("서버 가동");
-});
+app.set("views", "./views");
+app.set("view engine", "ejs");
 
 app.get("/", (req,res)=>{
-    res.send("여기는 루트입니다.")
+    res.render("home/index");
 });
 app.get("/login",(req,res)=>{
-    res.send(`<!DOCTYPE html>
-    <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        <input type="text" placeholder="아이디"><br>
-        <input type="text" placeholder="비밀번호"><br>
-        <button>login</button>
-    
-        
-    </body>
-    </html>`)
+    res.render("home/login");
+});
+
+
+app.listen(3000, function(){
+    console.log("서버 가동");
 });
