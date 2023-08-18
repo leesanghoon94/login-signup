@@ -1,3 +1,7 @@
+"use strict";
+
+//http 로 서버
+
 // const http = require("http");
 // const app = http.createServer((req, res) => {
 //     res.writeHead(200, {"content-Type": "text/html; charset=utf-8"})
@@ -13,20 +17,19 @@
 //     console.log("http로 가동된 서버 입니다.");
 // });
 
+ 
+//모듈
 const express = require("express");
 const app = express();
 
+
+//라우팅
+const home = require("./routes/home");
+//앱세팅
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
-app.get("/", (req,res)=>{
-    res.render("home/index");
-});
-app.get("/login",(req,res)=>{
-    res.render("home/login");
-});
 
+app.use("/", home); //use -> 미들웨어를 등록해주는 메서드.
 
-app.listen(3000, function(){
-    console.log("서버 가동");
-});
+module.exports = app;
