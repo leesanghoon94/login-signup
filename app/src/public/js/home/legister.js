@@ -1,19 +1,22 @@
 "use strict";
 
 const id = document.querySelector("#id"),
+   name = document.querySelector("#name"),
    password = document.querySelector("#password"),
-   loginBtn = document.querySelector("#button");
+   confirmPassword = document.querySelector("#confirm-password"),
+   registerBtn = document.querySelector("#button");
 
-loginBtn.addEventListener("click", login);
+registerBtn.addEventListener("click", register);
 
-function login(){
+function register(){
     const req = {
         id: id.value,
+        name: name.value,
         password: password.value,
+        confirmPassword: confirmPassword.value,
     };
-    // console.log(req);
-    // console.log(JSON.stringify(req));
-    fetch("/login", {
+
+    fetch("/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -21,25 +24,18 @@ function login(){
         body: JSON.stringify(req)
     })
     .then((res) => res.json())
+    //덴 이후 프로미스 객체로 반환
     //.then((res) => console.log(res); 파라미터값을 또 파라미터로 넘길때 생략해줄수있다.
     .then((res) => {
         if(res.success) {
-            location.href = "/";
+            location.href = "/login";
         } else {
             alert(res.message);
         }
     })
     .catch((err) => {
-        console.error("로그인중 에러발생");
-        // console.error(new Error("로그인중 에러발생"));
+        console.error("회원가입 중 에러발생");
     })
   
     
 };
-
-
-
-
-// console.log(id);
-// console.log(password);
-// console.log("hello");
