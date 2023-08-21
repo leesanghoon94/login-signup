@@ -21,8 +21,10 @@ function login(){
         body: JSON.stringify(req)
     })
     .then((res) => res.json())
-    //.then((res) => console.log(res); 파라미터값을 또 파라미터로 넘길때 생략해줄수있다.
+    
+    // .then((res) => console.log(res)); //파라미터값을 또 파라미터로 넘길때 생략해줄수있다.
     .then((res) => {
+        
         if(res.success) {
             location.href = "/";
         } else {
@@ -39,7 +41,3 @@ function login(){
 
 
 
-
-// console.log(id);
-// console.log(password);
-// console.log("hello");
