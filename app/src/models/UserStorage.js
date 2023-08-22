@@ -1,6 +1,6 @@
 "use strict";
 
-const fs = require("fs").promises;
+const db = require("../config/db");
 
 class UserStorage {
 //코딩문화 프라이빗한 변수나 메서드는 상단에
@@ -28,40 +28,24 @@ class UserStorage {
     }
 
     
-    static getUsers(isAll, ...fields) {
-        return fs
-        .readFile("src/database/db/user.json")
-        .then((data) => {
-            return this.#getUsers(data, isAll, fields);
-        })
-        .catch(console.error);
-       
-    }
+    static getUsers(isAll, ...fields) {}
 
-    static getUsersInfo(id) {    
-        // 콜백함수
-          return fs
-           .readFile("src/database/db/user.json")
-           .then((data) => {
-            return this.#getUsersInfo(data, id);
-           })
-           .catch(console.error);
+    static getUsersInfo(id) {
+       return new Promise((resolve, reject) => {
+            db.query("SELECT * FROM users WHERE id = ?", [id], (err, data) => {
+                if(err) {
+                    reject(err);
+                } else {
+                    console.log(data[0]);
+                resolve(data[0]);
+                
+                }
+            });
+        });
+        
         }
 
-    static async save(userInfo) {
-        //모든 파라미터를 가져올때 "id", "password", "name" => true 
-      const users = await this.getUsers(true);
-      //데이터 추가
-      if(users.id.includes(userInfo.id)) {
-        throw "이미 가입된";
-      }
-        users.id.push(userInfo.id);
-        users.name.push(userInfo.name);
-        users.password.push(userInfo.password);
-        fs.writeFile("src/database/db/user.json", JSON.stringify(users));
-        return {success: true};
-    }
-    
+    static async save(userInfo) {}
 };
 
 module.exports = UserStorage;

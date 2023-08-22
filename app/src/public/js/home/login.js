@@ -11,8 +11,7 @@ function login(){
         id: id.value,
         password: password.value,
     };
-    // console.log(req);
-    // console.log(JSON.stringify(req));
+
     fetch("/login", {
         method: "POST",
         headers: {
@@ -21,8 +20,6 @@ function login(){
         body: JSON.stringify(req)
     })
     .then((res) => res.json())
-    
-    // .then((res) => console.log(res)); //파라미터값을 또 파라미터로 넘길때 생략해줄수있다.
     .then((res) => {
         
         if(res.success) {
@@ -33,7 +30,6 @@ function login(){
     })
     .catch((err) => {
         console.error("로그인중 에러발생");
-        // console.error(new Error("로그인중 에러발생"));
     })
   
     
