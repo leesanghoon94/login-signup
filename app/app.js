@@ -1,23 +1,11 @@
 "use strict";
-//http 로 서버
-// const http = require("http");
-// const app = http.createServer((req, res) => {
-//     res.writeHead(200, {"content-Type": "text/html; charset=utf-8"})
 
-//     if(req.url === "/"){
-//         res.end("여기는 루트 입니다.");
-//     } else if(req.url === "/login"){
-//         res.end("여기는 로그인 화면 입니다.")
-//     };
-// });
-// app.listen(3001, ()=>{
-//     console.log("http로 가동된 서버 입니다.");
-// });
-
- 
 //모듈
 const express = require("express");
+const dotenv = require("dotenv");
+dotenv.config();
 const app = express();
+
 
 
 //라우팅
