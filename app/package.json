@@ -9,7 +9,8 @@
     "mysql": "^2.18.1",
     "nodemon": "^3.0.1",
     "rfs": "^10.0.0",
-    "rotating-file-stream": "^3.1.1"
+    "rotating-file-stream": "^3.1.1",
+    "winston": "^3.10.0"
   },
   "name": "login-lecture",
   "version": "1.0.0",
